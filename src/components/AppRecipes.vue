@@ -349,14 +349,14 @@ export default {
       this.createRecipeForm.name = "";
       this.createRecipeForm.ingredients = "";
       this.createRecipeForm.steps = "";
-      this.createRecipeForm.rating = "";
-      this.createRecipeForm.favorite = "False";
+      this.createRecipeForm.rating = 1;
+      this.createRecipeForm.favorite = false;
       this.editRecipeForm.id = "";
       this.editRecipeForm.name = "";
       this.editRecipeForm.ingredients = "";
       this.editRecipeForm.steps = "";
-      this.editRecipeForm.rating = "";
-      this.editRecipeForm.favorite = "False";
+      this.editRecipeForm.rating = 1;
+      this.editRecipeForm.favorite = false;
     },
     // Handle submit event for create recipe
     onSubmit(e) {

@@ -26,12 +26,15 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+          npm run test --if-present
+          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: |
             .
+
   deploy-prod:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -79,5 +82,5 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'jcasasus-assignment-fe-dv'
+          app-name: 'jcasasus-assignment-fe-dev'
           package: .

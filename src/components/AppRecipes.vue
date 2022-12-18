@@ -116,14 +116,15 @@
           </b-form-group>
           <b-form-group
             id="form-rating-group"
-            label="Rating:"
+            label="Rating (1-5):"
             label-for="form-rating-input"
           >
             <b-form-input
               id="form-rating-input"
-              type="text"
+              type="number"
+              min="1" max="5"
               v-model="createRecipeForm.rating"
-              placeholder="Select 1-5"
+              placeholder="Rating"
               required
             >
             </b-form-input>
@@ -133,15 +134,15 @@
             label="Favorite:"
             label-for="form-favorite-input"
           >
-            <b-form-input
+            <b-form-checkbox
               id="form-favorite-input"
               type="checkbox"
               v-model="createRecipeForm.favorite"
-              value="True"
-              unchecked-value="False"
+              value=true
+              unchecked-value=false
               required
             >
-            </b-form-input>
+            </b-form-checkbox>
           </b-form-group>
 
           <b-button type="submit" variant="outline-info">Submit</b-button>
@@ -201,14 +202,15 @@
           </b-form-group>
           <b-form-group
             id="form-edit-rating-group"
-            label="Rating:"
+            label="Rating (1-5):"
             label-for="form-edit-rating-input"
           >
             <b-form-input
               id="form-edit-rating-input"
-              type="text"
+              type="number"
+              min="1" max="5"
               v-model="editRecipeForm.rating"
-              placeholder="Select 1-5"
+              placeholder="Rating"
               required
             >
             </b-form-input>
@@ -218,15 +220,15 @@
             label="Favorite:"
             label-for="form-edit-favorite-input"
           >
-            <b-form-input
+            <b-form-checkbox
               id="form-edit-favorite-input"
               type="checkbox"
               v-model="editRecipeForm.favorite"
-              value="True"
+              value= true
               unchecked-value="False"
               required
             >
-            </b-form-input>
+            </b-form-checkbox>
           </b-form-group>
           <b-button type="submit" variant="outline-info">Update</b-button>
         </b-form>
@@ -247,16 +249,16 @@ export default {
         name: "",
         ingredients: "",
         steps: "",
-        rating: "",
-        favorite: "False",
+        rating: 1,
+        favorite: false,
       },
       editRecipeForm: {
         id: "",
         name: "",
         ingredients: "",
         steps: "",
-        rating: "",
-        favorite: "False",
+        rating: 1,
+        favorite: false,
       },
       showMessage: false,
       message: "",

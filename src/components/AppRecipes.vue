@@ -59,9 +59,6 @@
               </tr>
             </tbody>
           </table>
-          <footer class="text-center">
-            Copyright &copy; All Rights Reserved.
-          </footer>
         </div>
       </div>
       <b-modal

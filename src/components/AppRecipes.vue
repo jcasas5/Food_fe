@@ -1,9 +1,8 @@
 <template>
   <div class="jumbotron vertical-center">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1>APP RECEPIE</h1>
+      <div class="title">
+          <center style="background-color:#5DC1B9;"><h1>APP RECIPE</h1></center>
           <hr />
           <br />
           <!-- Allert Message -->
@@ -17,7 +16,7 @@
             class="btn btn-success btn-sm"
             v-b-modal.recipe-modal
           >
-            Create Account
+            Add Recipe
           </button>
           <br /><br />
           <table class="table table-hover">

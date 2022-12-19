@@ -16,7 +16,7 @@
             class="btn btn-success btn-sm"
             v-b-modal.recipe-modal
           >
-            Add Recipe
+            Create Recipe
           </button>
           <br /><br />
           <table class="table table-hover">
@@ -25,7 +25,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Ingredients</th>
                 <th scope="col">Steps</th>
-                <th scope="col">Rating</th>
+                <th scope="col">Rating (1-5)</th>
                 <th scope="col">Favorite</th>
                 <th scope="col">Actions</th>
               </tr>
@@ -36,7 +36,9 @@
                 <td>{{ recipe.ingredients }}</td>
                 <td>{{ recipe.steps }}</td>
                 <td>{{ recipe.rating }}</td>
-                <td>{{ recipe.favorite }}</td>
+                <td>
+                  <input type="checkbox" class="checkbox" v-model="recipe.favorite" />
+                </td>
                 <td>
                   <div class="btn-group" role="group">
                     <button
@@ -59,12 +61,16 @@
               </tr>
             </tbody>
           </table>
+          <footer class="text-center" style="background-color:#5DC1B9;">
+            
+            Add New Recipes for the Comunity to Use :)
+          </footer>
         </div>
       </div>
       <b-modal
         ref="addRecipeModal"
         id="recipe-modal"
-        title="Create new recipe"
+        title="Add a recipe"
         hide-backdrop
         hide-footer
       >
@@ -118,9 +124,10 @@
           >
             <b-form-input
               id="form-rating-input"
+              min = 1
+              max = 5
               type="number"
-              min="1" max="5"
-              v-model="createRecipeForm.rating"
+              v-model.number="createRecipeForm.rating"
               placeholder="Rating"
               required
             >
@@ -135,8 +142,6 @@
               id="form-favorite-input"
               type="checkbox"
               v-model="createRecipeForm.favorite"
-              value=true
-              unchecked-value=false
               required
             >
             </b-form-checkbox>
@@ -150,7 +155,7 @@
       <b-modal
         ref="editRecipeModal"
         id="edit-recipe-modal"
-        title="Edit Recipe"
+        title="Edit the recipe"
         hide-backdrop
         hide-footer
       >
@@ -204,9 +209,10 @@
           >
             <b-form-input
               id="form-edit-rating-input"
+              min = 1
+              max = 5
               type="number"
-              min="1" max="5"
-              v-model="editRecipeForm.rating"
+              v-model.number="editRecipeForm.rating"
               placeholder="Rating"
               required
             >
@@ -221,8 +227,6 @@
               id="form-edit-favorite-input"
               type="checkbox"
               v-model="editRecipeForm.favorite"
-              value= true
-              unchecked-value="False"
               required
             >
             </b-form-checkbox>
@@ -285,7 +289,7 @@ export default {
         .then((response) => {
           this.RESTgetRecipes();
           // For message alert
-          this.message = "Created Succesfully!";
+          this.message = "Recipe Created succesfully!";
           // To actually show the message
           this.showMessage = true;
           // To hide the message after 3 seconds
@@ -306,17 +310,13 @@ export default {
         .then((response) => {
           this.RESTgetRecipes();
           // For message alert
-          this.message = "Updated Succesfully!";
+          this.message = "Recipe Updated succesfully!";
           // To actually show the message
           this.showMessage = true;
           // To hide the message after 3 seconds
           setTimeout(() => {
             this.showMessage = false;
           }, 3000);
-        })
-        .catch((error) => {
-          console.error(error);
-          this.RESTgetRecipes();
         });
     },
     // Delete account
@@ -327,7 +327,7 @@ export default {
         .then((response) => {
           this.RESTgetRecipes();
           // For message alert
-          this.message = "Deleted Succesfully!";
+          this.message = "Recipe Deleted succesfully!";
           // To actually show the message
           this.showMessage = true;
           // To hide the message after 3 seconds
@@ -350,7 +350,6 @@ export default {
       this.createRecipeForm.steps = "";
       this.createRecipeForm.rating = 1;
       this.createRecipeForm.favorite = false;
-      this.editRecipeForm.id = "";
       this.editRecipeForm.name = "";
       this.editRecipeForm.ingredients = "";
       this.editRecipeForm.steps = "";
